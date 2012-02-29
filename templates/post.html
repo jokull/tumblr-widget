@@ -1,0 +1,19 @@
+<script type="text/template" id="tpl-tumblr-post">
+
+  <% if(typeof title !== 'undefined' && title){ %>
+    <h2 class="title">
+      <a href="<%= post_url %>"><%= title %></a>
+    </h2>
+  <% } %>
+
+  <% if(typeof photos !== 'undefined' && photos.length){ %>
+    <% for (var i=0; i < photos.length; i++) { %>
+    <a href="<%= post_url %>"><img src="<%= photos[i].alt_sizes[0].url %>" alt="<%= photos.caption %>"></a>
+    <% } %>
+  <% } %>
+
+  <% if(typeof body !== 'undefined' && body){ %>
+    <%= body %>
+  <% } %>
+  
+</script>

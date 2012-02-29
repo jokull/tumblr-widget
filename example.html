@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/template" id="tpl-tumblr-post">
+
+      <% if(typeof title !== 'undefined' && title){ %>
+        <h2 class="title">
+          <a href="<%= post_url %>"><%= title %></a>
+        </h2>
+      <% } %>
+
+      <% if(typeof photos !== 'undefined' && photos.length){ %>
+        <% for (var i=0; i < photos.length; i++) { %>
+        <a href="<%= post_url %>"><img src="<%= photos[i].alt_sizes[0].url %>" alt="<%= photos.caption %>"></a>
+        <% } %>
+      <% } %>
+
+      <% if(typeof body !== 'undefined' && body){ %>
+        <%= body %>
+      <% } %>
+  
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
+    <script src="http://backbonejs.org/backbone-min.js"></script>
+    <script src="tumblr.js"></script>
+    <script>
+    tumblr = {};
+    $(document).ready(function(){
+      tumblr.collection = new Tumblr({
+        hostname: 'kexhostel.tumblr.com',
+        params: {
+            api_key: 'yk0jaTbiVSXap7qTQtzYY36VbOQklHZ1fleeTOK9t5FZqHhrgC'
+           // ,tag: 'events'
+        }
+      });
+      tumblr.view = new TumblrView({
+        el: '#tumblr',
+        collection: tumblr.collection
+      });
+      tumblr.collection.page();
+    });
+    </script>
+  </head>
+  <body>
+    <div id="tumblr"></div>
+  </body>
+</html>

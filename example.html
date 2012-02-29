@@ -11,7 +11,9 @@
 
       <% if(typeof photos !== 'undefined' && photos.length){ %>
         <% for (var i=0; i < photos.length; i++) { %>
-        <a href="<%= post_url %>"><img src="<%= photos[i].alt_sizes[0].url %>" alt="<%= photos.caption %>"></a>
+        <a href="<%= photos[i].original_size.url %>">
+          <img src="<%= photos[i].alt_sizes[0].url %>"></a>
+        <a href="<%= post_url %>"><%= photos.caption %></a>
         <% } %>
       <% } %>
 
@@ -31,7 +33,8 @@
         hostname: 'kexhostel.tumblr.com',
         params: {
             api_key: 'yk0jaTbiVSXap7qTQtzYY36VbOQklHZ1fleeTOK9t5FZqHhrgC'
-           // ,tag: 'events'
+           ,tag: 'event'
+           ,limit: 10
         }
       });
       tumblr.view = new TumblrView({

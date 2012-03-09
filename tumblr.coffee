@@ -33,7 +33,6 @@ class root.Tumblr extends Backbone.Collection
   
   page: =>
     params = _.extend @params, {offset: @length - 1}
-    console.log @endpoint + '/posts/json?' + ($.param params)
     $.ajax
       url: @endpoint + '/posts/json?' + ($.param params)
       dataType: "jsonp"
@@ -53,6 +52,7 @@ class root.TumblrPostView extends Backbone.View
 
   render: =>
     tpl = _.template ($ "#tpl-tumblr-post").html()
+    ($ @el).addClass (@model.get "type")
     ($ @el).html (tpl @model.toJSON())
     return @
 

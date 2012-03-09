@@ -79,7 +79,6 @@
       params = _.extend(this.params, {
         offset: this.length - 1
       });
-      console.log(this.endpoint + '/posts/json?' + ($.param(params)));
       return $.ajax({
         url: this.endpoint + '/posts/json?' + ($.param(params)),
         dataType: "jsonp",
@@ -116,6 +115,7 @@
     TumblrPostView.prototype.render = function() {
       var tpl;
       tpl = _.template(($("#tpl-tumblr-post")).html());
+      ($(this.el)).addClass(this.model.get("type"));
       ($(this.el)).html(tpl(this.model.toJSON()));
       return this;
     };
